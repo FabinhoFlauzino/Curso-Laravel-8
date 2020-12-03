@@ -75,5 +75,15 @@ class PostController extends Controller
                 ->with('message', 'Alterado com sucesso!');
     }
 
+    public function search(Request $request)
+    {
+        $filters = $request->except('_token');
+
+        $posts = Post::where('title', 'LIKE', "%{$request->search}%")
+                        ->orwhere('content', 'LIKE', "%{$request->search}%")
+                        ->paginate();
+
+        return view('admin.posts.index', compact('posts', 'filters'));
+    }
 
 }

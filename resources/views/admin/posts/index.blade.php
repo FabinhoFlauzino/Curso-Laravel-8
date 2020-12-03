@@ -1,4 +1,10 @@
 <h1>Posts</h1>
+
+<form action="{{ route('posts.search') }}" method="post">
+    @csrf
+    <input type="text" name="search" placeholder="Filtrar">
+    <button type="submit">Filtrar</button>
+</form>
 <a href="{{ route('posts.create') }}">Criar Novo Post</a>
 <hr>
 
@@ -20,5 +26,6 @@
 
 <hr>
 
-{{ $posts->links() }}
+<!--
+    { !!$posts->appends()->links() !! }-->
 
